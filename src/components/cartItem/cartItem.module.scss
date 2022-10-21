@@ -1,0 +1,30 @@
+.wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 60px;
+    padding: 10px 15px;
+    cursor: pointer;
+    &:hover {
+        background-color: #f2f2f2;
+    }
+}
+
+.product-img {
+    width: 50px;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-name {
+    color: #6e6e6e;
+    font-size: 15px;
+    font-weight: 400;
+    margin-left: -60px;
+}
+
+.product-price {
+    font-size: 16px;
+    color: var(--primary);
+    right: 0;
+}
