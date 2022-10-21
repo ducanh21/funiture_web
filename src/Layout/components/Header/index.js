@@ -36,7 +36,7 @@ function Header() {
                 </a>
 
                 <Tippy
-                    zIndex={9999999}
+                    visible={true}
                     interactive
                     render={(attrs) => (
                         <div className={cx('cart')} tabIndex="-1">

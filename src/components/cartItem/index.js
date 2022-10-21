@@ -9,7 +9,7 @@ function cartItem() {
         <div className={cx('wrapper')}>
             <img src={image} alt="" className={cx('product-img')}></img>
             <div className={cx('product-name')}>Nồi chiên không dầu GAABOR</div>
-            <div className={cx('product-price')}>1090.000đ</div>
+            <div className={cx('product-price')}>1990.000đ</div>
         </div>
     );
 }
