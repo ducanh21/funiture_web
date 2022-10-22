@@ -28,7 +28,7 @@ function Header() {
             <div className={cx('header-end')}>
                 <a
                     onClick={function () {
-                        alert();
+                        console.log(123);
                     }}
                 >
                     Search
