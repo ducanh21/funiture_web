@@ -1,0 +1,32 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    cursor: pointer;
+    &:hover {
+        background-color: #ccc;
+    }
+}
+.box {
+    display: block;
+    margin-left: 20px;
+    font-weight: 400;
+}
+
+.image {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    box-shadow: 10px 10px 10px #ccc;
+}
+
+.name {
+    font-size: 18px;
+}
+
+.price {
+    font-size: 20px;
+    color: var(--primary);
+    font-weight: 800;
+    font-style: italic;
+}
