@@ -56,6 +56,7 @@
     object-fit: contain;
 }
 .search {
+    position: relative;
     display: flex;
     width: 250px;
     height: 50px;
@@ -79,9 +80,27 @@
 }
 
 .btn-search {
+    border-left: 1px solid #ccc;
     color: #ccc !important;
+    padding: 0 5px;
+    margin-left: 5px;
 }
 
 .seach-result {
     width: 500px;
+}
+
+.btn-loading {
+    position: absolute;
+    right: 46px;
+    animation: spinner 0.8s linear infinite;
+}
+
+@keyframes spinner {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }

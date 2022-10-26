@@ -1,6 +1,6 @@
 import style from './Header.module.scss';
 import className from 'classnames/bind';
-import { Fragment, React, useState } from 'react';
+import { Fragment, React, useRef, useState } from 'react';
 import Tippy from '@tippyjs/react/headless';
 import logo from '../../../image/logo.jpg';
 import CartItem from '../../../components/cartItem';
@@ -12,6 +12,7 @@ import {
     faBars,
     faCartPlus,
     faCircleArrowRight,
+    faCircleXmark,
     faCommentDots,
     faHouse,
     faInfoCircle,
@@ -19,6 +20,7 @@ import {
     faRss,
     faSearch,
     faSignal,
+    faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
 import SearchResult from '../../../components/SearchResult';
 
@@ -26,6 +28,11 @@ const cx = className.bind(style);
 
 function Header() {
     const [searchResult, setSeachRusult] = useState([]);
+    const [searchValue, setSearchValue] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const refInput = useRef();
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('header-start')}>
@@ -48,6 +55,7 @@ function Header() {
                 <Tippy
                     onClickOutside={() => {
                         setSeachRusult([]);
+                        setLoading(false);
                     }}
                     visible={searchResult.length > 0}
                     interactive
@@ -64,15 +72,31 @@ function Header() {
                 >
                     <div className={cx('search')}>
                         <input
+                            ref={refInput}
                             className={cx('search-input')}
+                            onChange={() => {
+                                setSearchValue(refInput.current.value);
+                            }}
                             onFocus={() => {
                                 setTimeout(() => {
                                     setSeachRusult([1, 2]);
+                                    setLoading(true);
                                 }, 2000);
                             }}
                             placeholder="Tìm kiếm"
                             type={'text'}
                         ></input>
+                        {/* <a className={cx('btn-loading')}>{loading && <FontAwesomeIcon icon={faSpinner} />}</a> */}
+                        <a
+                            className={cx('btn-clear')}
+                            onClick={() => {
+                                refInput.current.value = '';
+                                setSearchValue(refInput.current.value);
+                                refInput.current.focus();
+                            }}
+                        >
+                            {searchValue !== '' && <FontAwesomeIcon icon={faCircleXmark} />}
+                        </a>
                         <a className={cx('btn-search')}>
                             <FontAwesomeIcon icon={faSearch} />
                         </a>
