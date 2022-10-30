@@ -13,16 +13,13 @@ import {
     faCartPlus,
     faCircleArrowRight,
     faCircleXmark,
-    faCommentDots,
     faHouse,
-    faInfoCircle,
-    faPhoneFlip,
     faRss,
     faSearch,
-    faSignal,
     faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
 import SearchResult from '../../../components/SearchResult';
+import Login from '../../../components/Login';
 
 const cx = className.bind(style);
 
@@ -30,8 +27,10 @@ function Header() {
     const [searchResult, setSeachRusult] = useState([]);
     const [searchValue, setSearchValue] = useState('');
     const [loading, setLoading] = useState(false);
+    const [login, setLogin] = useState(false);
 
     const refInput = useRef();
+    const hd = useRef();
 
     return (
         <header className={cx('wrapper')}>
@@ -51,7 +50,7 @@ function Header() {
                     <img src={logo} alt="Khong hien thi"></img>
                 </a>
             </div>
-            <div className={cx('header-end')}>
+            <div ref={hd} className={cx('header-end')}>
                 <Tippy
                     onClickOutside={() => {
                         setSeachRusult([]);
@@ -122,9 +121,15 @@ function Header() {
                         </a>
                     </Tippy>
                 </div>
-                <a>
+                <a
+                    onClick={() => {
+                        setLogin(true);
+                        console.log(login);
+                    }}
+                >
                     Đăng nhập <FontAwesomeIcon icon={faCircleArrowRight} />
                 </a>
+                {login && <Login></Login>}
             </div>
         </header>
     );
