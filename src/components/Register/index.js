@@ -1,7 +1,7 @@
-import styles from './Login.module.scss';
+import styles from './Register.module.scss';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClose, faEye, faEyeSlash, faFaceAngry, faFaceDizzy, faL } from '@fortawesome/free-solid-svg-icons';
+import { faClose, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useRef, useState } from 'react';
 import Button from '../Button';
 import gg from '../../image/gg.png';
@@ -10,8 +10,10 @@ import tw from '../../image/tw.png';
 
 const cx = classNames.bind(styles);
 
-function Login({ onClick, onClick1 }) {
+function Register({ onClick, onClick1 }) {
     const input_pass = useRef();
+    const input_pass_agian = useRef();
+
     const modal = useRef();
     const modal_class = cx('modal');
 
@@ -37,16 +39,13 @@ function Login({ onClick, onClick1 }) {
                 </span>
 
                 <div className={cx('options')}>
+                    <Button onClick={onClick1}>Log In</Button>
                     <Button
-                        active={active == 1 ? true : false}
+                        active
                         onClick={(e) => {
                             e.preventDefault();
-                            setActive(1);
                         }}
                     >
-                        Log In
-                    </Button>
-                    <Button active={active == 2 ? true : false} onClick={onClick1}>
                         Register
                     </Button>
                 </div>
@@ -63,13 +62,25 @@ function Login({ onClick, onClick1 }) {
                 </div>
                 <div className={cx('value')}>
                     <input id={cx('username')} type="text" placeholder="Username"></input>
-                    <input ref={input_pass} id={cx('password')} type={'password'} placeholder="Password"></input>
+                    <input id={cx('email')} type="email" placeholder="Email"></input>
+                    <input ref={input_pass} id={cx('password')} type={'password'} placeholder="Enter password"></input>
+                    <input
+                        ref={input_pass_agian}
+                        id={cx('password_again')}
+                        type={'password'}
+                        placeholder="Enter the password again"
+                    ></input>
                     <p
                         onClick={() => {
-                            if ((input_pass.current.type = 'password')) {
+                            if (
+                                input_pass.current.type === 'password' &&
+                                input_pass_agian.current.type === 'password'
+                            ) {
                                 setEye(false);
                                 setEyeSlash(true);
                                 input_pass.current.type = 'text';
+                                input_pass_agian.current.type = 'text';
+                                console.log(input_pass_agian.current.type);
                             }
                         }}
                     >
@@ -77,10 +88,11 @@ function Login({ onClick, onClick1 }) {
                     </p>
                     <p
                         onClick={() => {
-                            if ((input_pass.current.type = 'text')) {
+                            if (input_pass.current.type === 'text' && input_pass_agian.current.type === 'text') {
                                 setEye(true);
                                 setEyeSlash(false);
                                 input_pass.current.type = 'password';
+                                input_pass_agian.current.type = 'password';
                             }
                         }}
                     >
@@ -92,10 +104,10 @@ function Login({ onClick, onClick1 }) {
                         <label> Remember password</label>
                     </div>
                 </div>
-                <Button primary>Log in</Button>
+                <Button primary>Register</Button>
             </form>
         </div>
     );
 }
 
-export default Login;
+export default Register;

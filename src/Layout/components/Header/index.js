@@ -20,6 +20,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import SearchResult from '../../../components/SearchResult';
 import Login from '../../../components/Login';
+import Btn from '../../../components/Button';
+import Register from '../../../components/Register';
 
 const cx = className.bind(style);
 
@@ -27,7 +29,8 @@ function Header() {
     const [searchResult, setSeachRusult] = useState([]);
     const [searchValue, setSearchValue] = useState('');
     const [loading, setLoading] = useState(false);
-    const [login, setLogin] = useState(false);
+    const [showlogin, setShowLogin] = useState(false);
+    const [showregister, setShowRegister] = useState(false);
 
     const refInput = useRef();
     const hd = useRef();
@@ -123,13 +126,42 @@ function Header() {
                 </div>
                 <a
                     onClick={() => {
-                        setLogin(true);
-                        console.log(login);
+                        setShowLogin(true);
+                        console.log(showlogin);
                     }}
                 >
                     Đăng nhập <FontAwesomeIcon icon={faCircleArrowRight} />
                 </a>
-                {login && <Login></Login>}
+                {showlogin && (
+                    <Login
+                        text="1234"
+                        onClick={() => {
+                            setShowLogin(false);
+                            console.log(showlogin);
+                        }}
+                        onClick1={(e) => {
+                            setShowRegister(true);
+                            setShowLogin(false);
+                            console.log(showregister);
+                            e.preventDefault();
+                        }}
+                    ></Login>
+                )}
+                {showregister && (
+                    <Register
+                        text="1234"
+                        onClick={() => {
+                            setShowRegister(false);
+                            console.log(showregister);
+                        }}
+                        onClick1={(e) => {
+                            setShowRegister(false);
+                            setShowLogin(true);
+                            e.preventDefault();
+                            console.log(showregister);
+                        }}
+                    ></Register>
+                )}
             </div>
         </header>
     );
