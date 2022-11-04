@@ -1,11 +1,13 @@
 import style from './Header.module.scss';
 import className from 'classnames/bind';
 import { Fragment, React, useRef, useState } from 'react';
-import Tippy from '@tippyjs/react/headless';
-import logo from '../../../image/logo.jpg';
-import CartItem from '../../../components/cartItem';
+import TippyHeadless from '@tippyjs/react/headless';
+import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
-import { Link } from 'react-router-dom';
+import logo from '../../../image/logo.jpg';
+import avata from '../../../image/avatar.jpg';
+import CartItem from '../../../components/cartItem';
+import { Link, useNavigate } from 'react-router-dom';
 import { Wrapper as PopperWrapper } from '../../../components/Popper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -13,7 +15,13 @@ import {
     faCartPlus,
     faCircleArrowRight,
     faCircleXmark,
+    faHeartCirclePlus,
     faHouse,
+    faInfo,
+    faInfoCircle,
+    faLanguage,
+    faQuestionCircle,
+    faRightFromBracket,
     faRss,
     faSearch,
     faSpinner,
@@ -29,11 +37,14 @@ function Header() {
     const [searchResult, setSeachRusult] = useState([]);
     const [searchValue, setSearchValue] = useState('');
     const [loading, setLoading] = useState(false);
+    const [showInfo, setShowInfo] = useState(false);
     const [showlogin, setShowLogin] = useState(false);
     const [showregister, setShowRegister] = useState(false);
+    const [currentUser, setCurrentUser] = useState(localStorage.getItem('userID'));
 
     const refInput = useRef();
     const hd = useRef();
+    const navigate = useNavigate();
 
     return (
         <header className={cx('wrapper')}>
@@ -54,7 +65,7 @@ function Header() {
                 </a>
             </div>
             <div ref={hd} className={cx('header-end')}>
-                <Tippy
+                <TippyHeadless
                     onClickOutside={() => {
                         setSeachRusult([]);
                         setLoading(false);
@@ -100,13 +111,15 @@ function Header() {
                         >
                             {searchValue !== '' && <FontAwesomeIcon icon={faCircleXmark} />}
                         </a>
-                        <a className={cx('btn-search')}>
-                            <FontAwesomeIcon icon={faSearch} />
-                        </a>
+                        <Tippy content="Tìm kiếm">
+                            <a className={cx('btn-search')}>
+                                <FontAwesomeIcon icon={faSearch} />
+                            </a>
+                        </Tippy>
                     </div>
-                </Tippy>
+                </TippyHeadless>
                 <div>
-                    <Tippy
+                    <TippyHeadless
                         // visible={true}
                         interactive
                         render={(attrs) => (
@@ -120,21 +133,76 @@ function Header() {
                             </div>
                         )}
                     >
-                        <a>
+                        <a onClick={() => {}}>
                             Giỏ hàng <FontAwesomeIcon icon={faCartPlus} />
                         </a>
-                    </Tippy>
+                    </TippyHeadless>
                 </div>
-                <a
-                    onClick={() => {
-                        setShowLogin(true);
-                    }}
-                >
-                    Đăng nhập <FontAwesomeIcon icon={faCircleArrowRight} />
-                </a>
+                <></>
+
+                {!currentUser ? (
+                    <Tippy content="Đăng nhập">
+                        <a
+                            onClick={() => {
+                                setShowLogin(true);
+                            }}
+                        >
+                            Đăng nhập <FontAwesomeIcon icon={faCircleArrowRight} />
+                        </a>
+                    </Tippy>
+                ) : (
+                    <TippyHeadless
+                        // offset={'100%'}
+                        onClickOutside={() => {
+                            setShowInfo(false);
+                        }}
+                        interactive={true}
+                        visible={showInfo}
+                        render={(attrs) => (
+                            <div className={cx('info')} tabIndex="-1">
+                                <PopperWrapper>
+                                    <div className={cx('options')}>
+                                        <div className={cx('info-item')}>
+                                            <FontAwesomeIcon icon={faInfoCircle}> </FontAwesomeIcon> Thông tin tài khoản
+                                        </div>
+                                        <div className={cx('info-item')}>
+                                            <FontAwesomeIcon icon={faLanguage}> </FontAwesomeIcon> Vùng và ngôn ngữ
+                                        </div>
+                                        <div className={cx('info-item')}>
+                                            <FontAwesomeIcon icon={faQuestionCircle}> </FontAwesomeIcon> Hỗ trợ và giúp
+                                            đỡ
+                                        </div>
+                                        <div
+                                            onClick={() => {
+                                                setShowInfo(false);
+                                                localStorage.removeItem('userID');
+                                                setCurrentUser('');
+                                                navigate('/');
+                                            }}
+                                            className={cx('info-item')}
+                                        >
+                                            <FontAwesomeIcon icon={faRightFromBracket}> </FontAwesomeIcon> Đăng xuất
+                                        </div>
+                                    </div>
+                                </PopperWrapper>
+                            </div>
+                        )}
+                    >
+                        <img
+                            onClick={() => {
+                                setShowInfo(true);
+                            }}
+                            src={avata}
+                            className={cx('info-avatar')}
+                        ></img>
+                    </TippyHeadless>
+                )}
+
                 {showlogin && (
                     <Login
-                        text="1234"
+                        currentUser={() => {
+                            setCurrentUser(localStorage.getItem('userID'));
+                        }}
                         closeForm={() => {
                             setShowLogin(false);
                         }}

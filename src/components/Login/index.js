@@ -13,7 +13,7 @@ import tw from '../../image/tw.png';
 
 const cx = classNames.bind(styles);
 
-function Login({ closeForm, showFormRegister }) {
+function Login({ closeForm, showFormRegister, currentUser }) {
     const input_pass = useRef();
     const modal = useRef();
     const modal_class = cx('modal');
@@ -59,6 +59,7 @@ function Login({ closeForm, showFormRegister }) {
                         buttons: false,
                     }).then(() => {
                         localStorage.setItem('userID', CHECK.id);
+                        currentUser();
                         navigate('/about');
                         closeForm();
                     });
