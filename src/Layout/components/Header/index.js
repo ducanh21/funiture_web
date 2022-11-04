@@ -75,9 +75,10 @@ function Header() {
                     <div className={cx('search')}>
                         <input
                             ref={refInput}
+                            value={searchValue}
                             className={cx('search-input')}
-                            onChange={() => {
-                                setSearchValue(refInput.current.value);
+                            onChange={(e) => {
+                                setSearchValue(e.target.value);
                             }}
                             onFocus={() => {
                                 setTimeout(() => {
@@ -127,7 +128,6 @@ function Header() {
                 <a
                     onClick={() => {
                         setShowLogin(true);
-                        console.log(showlogin);
                     }}
                 >
                     Đăng nhập <FontAwesomeIcon icon={faCircleArrowRight} />
@@ -135,14 +135,12 @@ function Header() {
                 {showlogin && (
                     <Login
                         text="1234"
-                        onClick={() => {
+                        closeForm={() => {
                             setShowLogin(false);
-                            console.log(showlogin);
                         }}
-                        onClick1={(e) => {
+                        showFormRegister={(e) => {
                             setShowRegister(true);
                             setShowLogin(false);
-                            console.log(showregister);
                             e.preventDefault();
                         }}
                     ></Login>
@@ -150,15 +148,13 @@ function Header() {
                 {showregister && (
                     <Register
                         text="1234"
-                        onClick={() => {
+                        closeForm={() => {
                             setShowRegister(false);
-                            console.log(showregister);
                         }}
-                        onClick1={(e) => {
+                        showFormLogin={(e) => {
                             setShowRegister(false);
                             setShowLogin(true);
-                            e.preventDefault();
-                            console.log(showregister);
+                            // e.preventDefault();
                         }}
                     ></Register>
                 )}
