@@ -4,14 +4,16 @@ import logo from '../../image/gb.jpg';
 
 const cx = classNames.bind(style);
 
-function SearchResult() {
+function SearchResult({ onClick, data }) {
     return (
-        <div className={cx('wrapper')}>
-            <img className={cx('image')} src={logo}></img>
+        <div onClick={onClick} className={cx('wrapper')}>
+            <img className={cx('image')} src={data.image}></img>
             <div className={cx('box')}>
-                <span className={cx('name')}>Lò chiên không dầu Kangaroo KG12AF1A 12 lít </span>
+                <span className={cx('name')}>{data.name}</span>
                 <br></br>
-                <span className={cx('price')}>1.009.000đ</span>
+                <span className={cx('price')}>
+                    {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(data.price)}
+                </span>
             </div>
         </div>
     );

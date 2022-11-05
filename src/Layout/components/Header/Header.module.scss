@@ -64,8 +64,10 @@
     object-fit: cover;
 }
 .cart {
-    width: 400px;
+    min-width: 400px;
+    height: 400px;
     font-weight: 400;
+    animation: fadein ease-in-out 0.3s;
 }
 .title {
     display: block;
@@ -91,6 +93,22 @@
     padding: 0 10px;
     align-items: center;
 }
+.cart-icon {
+    display: block;
+    position: relative;
+    .count {
+        position: absolute;
+        top: -12px;
+        right: -12px;
+        font-weight: 800;
+        text-align: center;
+        font-size: 13px;
+        background-color: #333;
+        color: #fff;
+        padding: 2px 8px;
+        border-radius: 100%;
+    }
+}
 
 .search-input {
     height: 100%;
@@ -115,9 +133,12 @@
     width: 500px;
 }
 
-.btn-loading {
+.btn-loading,
+.btn-clear {
     position: absolute;
     right: 46px;
+}
+.btn-loading {
     animation: spinner 0.8s linear infinite;
 }
 
@@ -127,5 +148,13 @@
     }
     to {
         transform: rotate(360deg);
+    }
+}
+@keyframes fadein {
+    from {
+        transform: scaleY(0);
+    }
+    to {
+        transform: scaleX(1);
     }
 }

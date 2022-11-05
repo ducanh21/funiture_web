@@ -4,12 +4,17 @@ import image from '../../image/gb.jpg';
 
 const cx = classNames.bind(styles);
 
-function cartItem() {
+function cartItem({ data }) {
     return (
         <div className={cx('wrapper')}>
-            <img src={image} alt="" className={cx('product-img')}></img>
-            <div className={cx('product-name')}>Nồi chiên không dầu GAABOR</div>
-            <div className={cx('product-price')}>1990.000đ</div>
+            <img src={data.image} alt="" className={cx('product-img')}></img>
+            <div className={cx('product-name')}>{data.name}</div>
+            <div className={cx('product-count')}>{'SL: ' + data.count}</div>
+            <div className={cx('product-price')}>
+                {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(
+                    Number(data.price) * Number(data.count),
+                )}
+            </div>
         </div>
     );
 }

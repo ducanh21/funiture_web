@@ -1,0 +1,19 @@
+.footer {
+}
+
+.footer-content {
+    height: 250px;
+    border: 2px solid #ccc;
+}
+
+.footer-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ccc;
+    height: 70px;
+    font-size: 14px;
+    .info {
+        width: 1400px;
+    }
+}
