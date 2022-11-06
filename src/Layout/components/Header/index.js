@@ -91,7 +91,7 @@ function Header() {
             }
         };
         getInfoCart();
-    }, [cartInfo]);
+    }, []);
 
     useEffect(() => {
         if (!Debounce) {
@@ -198,7 +198,13 @@ function Header() {
                             </div>
                         )}
                     >
-                        <a className={cx('cart-icon')} onClick={() => {}}>
+                        <a
+                            className={cx('cart-icon')}
+                            onFocus={() => {
+                                console.log(123);
+                            }}
+                            onClick={() => {}}
+                        >
                             Giỏ hàng <FontAwesomeIcon icon={faCartPlus} />
                             <span className={cx('count')}>{cartInfo.length}</span>
                         </a>
