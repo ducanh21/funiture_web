@@ -192,7 +192,7 @@ function Header() {
                                 <PopperWrapper>
                                     <span className={cx('title')}>Sản phẩm thêm mới</span>
                                     {cartInfo.map((item) => {
-                                        return <CartItem data={item}></CartItem>;
+                                        return <CartItem key={item.id} data={item}></CartItem>;
                                     })}
                                 </PopperWrapper>
                             </div>

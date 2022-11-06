@@ -15,7 +15,7 @@ function Footer() {
                         Trần Quang Khải, P. Tân Định, Q.1, TP.Hồ Chí Minh. Điện thoại: 028 38125960. Email:
                         cskh@thegioididong.com. Chịu trách nhiệm nội dung: Huỳnh Văn Tốt.
                     </span>
-                    <a href="">Xem chính sách sử dụng</a>
+                    <a href=""> Xem chính sách sử dụng</a>
                 </p>
             </div>
         </div>

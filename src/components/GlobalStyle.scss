@@ -21,3 +21,36 @@ body {
     line-height: 1.5;
     text-rendering: optimizeSpeed;
 }
+
+a {
+    text-decoration: none;
+    color: #2e9afe;
+}
+
+.slick-prev,
+.slick-next {
+    z-index: 1999;
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    padding: 12px;
+    font-size: 16px;
+    background: #fff;
+    opacity: 0.7;
+    border: none;
+    border-radius: 100%;
+    cursor: pointer;
+    color: #ccc;
+    box-shadow: 0 0 12px rgb(50 50 50 / 50%);
+
+    &:hover {
+        color: black;
+    }
+}
+
+.slick-prev {
+    left: -10px;
+}
+.slick-next {
+    right: -10px;
+}

@@ -1,0 +1,17 @@
+.chat-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    cursor: pointer;
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    background-color: var(--primary);
+    position: fixed;
+    font-size: 36px;
+    box-shadow: 0 0 17px rgb(50 50 50 / 50%);
+    // position: absolute;
+    right: 80px;
+    bottom: 80px;
+}
