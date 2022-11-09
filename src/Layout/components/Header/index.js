@@ -215,7 +215,7 @@ function Header() {
                 {!currentUser ? (
                     <Tippy content="Đăng nhập">
                         <a
-                            onClick={() => {
+                            onClick={function(){
                                 setShowLogin(true);
                             }}
                         >

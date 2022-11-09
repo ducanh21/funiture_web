@@ -4,9 +4,13 @@ import styles from './Footer. module.scss';
 const cx = classNames.bind(styles);
 
 function Footer() {
+
+
     return (
         <div className={cx('footer')}>
-            <div className={cx('footer-content')}></div>
+            <div  className={cx('footer-content')}> 
+                Đây là  footer
+            </div>
             <div className={cx('footer-info')}>
                 <p className={cx('info')}>
                     <span>
@@ -15,7 +19,9 @@ function Footer() {
                         Trần Quang Khải, P. Tân Định, Q.1, TP.Hồ Chí Minh. Điện thoại: 028 38125960. Email:
                         cskh@thegioididong.com. Chịu trách nhiệm nội dung: Huỳnh Văn Tốt.
                     </span>
-                    <a href=""> Xem chính sách sử dụng</a>
+                    <a onClick={function(){
+                        alert("helô");
+                    }}> Xem chính sách sử dụng</a>
                 </p>
             </div>
         </div>
